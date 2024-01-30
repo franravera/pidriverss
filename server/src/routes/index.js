@@ -9,9 +9,9 @@ const routerr = Router();
 
 routerr.use('/',driversrout)
 
-routerr.use('/drivers/:id', driversrout)
+routerr.use('/:id', driversrout)
 
-routerr.use('/drivers/:name', driversrout)
+// routerr.use('/drivers/:name', driversrout)
 
 routerr.use('/teams', teamrouterr)
 
