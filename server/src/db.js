@@ -11,7 +11,8 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   logging: false, 
   native: false, 
 });
-const basename = path.basename(__filename);
+const basename = path.basename(__filename); 
+//
 
 const modelDefiners = [];
 
@@ -33,7 +34,7 @@ const { Driver, Teams } = sequelize.models;
 
 // Aca vendrian las relaciones
 Driver.belongsToMany(Teams, {through:'DriversxTeams'});
-Teams.belongsToMany(Driver, {through:'DriversxTeam'});
+Teams.belongsToMany(Driver, {through:'DriversxTeams'});
 // Product.hasMany(Reviews);
 
 

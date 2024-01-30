@@ -1,9 +1,23 @@
 const { Router } = require("express");
+const teamrouterr = require('./teamsroute')
+const driversrout = require('./driversrout')
 
-const router = Router();
 
-//router.get("/drivers", (req, res) => {
-  //  res.json({ message: "¡Hola, esta es una ruta de ejemplo!" });
-  //});
+const routerr = Router();
 
-module.exports = router;
+
+
+routerr.use('/',driversrout)
+
+routerr.use('/drivers/:id', driversrout)
+
+routerr.use('/drivers/:name', driversrout)
+
+routerr.use('/teams', teamrouterr)
+
+
+// routerr.get("/drivers", (req, res) => {
+//     res.json({ message: "¡Hola, esta es una ruta de ejemplo!" });
+//   });
+
+module.exports = routerr;
