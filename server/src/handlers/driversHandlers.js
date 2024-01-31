@@ -29,7 +29,7 @@ const getIdDrivers =async (req, res) => {
       const dridri = await funcionId(idDriver, source);
       res.status(200).json(dridri)
     } catch (error) {
-      console.error(error);
+
       res.status(400).json("ERROR MEN ")
     };
 
