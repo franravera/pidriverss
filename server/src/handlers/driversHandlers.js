@@ -1,4 +1,6 @@
+const { json } = require('sequelize');
 
+const {createDriverDB, funcionId} = require ('../controllers/driversControllers')
  
 
 const getAllDrivers = (req, res )=>{
@@ -20,20 +22,34 @@ else res.send('este es el get de TODOS los drivers' );
 //};
 
 
-const getIdDrivers = (req, res) => {
-    const { id } = req.params;
-    res.json({ message: `Este es el GET de drivers por id ${id}` });
+const getIdDrivers =async (req, res) => {
+    const { idDriver } = req.params;
+  const source= isNaN(idDriver)? "BDD" : "API";
+    try {
+      const dridri = await funcionId(idDriver, source);
+      res.status(200).json(dridri)
+    } catch (error) {
+      console.error(error);
+      res.status(400).json("ERROR MEN ")
+    };
+
+
+    // res.json({ message: `Este es el GET de drivers por id ${idDriver}` });
   };
    
 
 
-const createDrivers = (req,res) => { 
+const createDrivers = async (req,res) => { 
 //     Esta ruta recibirá todos los datos necesarios para crear un driver y relacionarlo con sus teams solicitados.
 // Toda la información debe ser recibida por body.
 // Debe crear un driver en la base de datos, y este debe estar relacionado con sus teams indicados (al menos uno).
-
-res.json({ message: 'POST de drivers' });
-
+const {name, surname, description, image, nationality, birth } = req.body;
+try { 
+  const newDriver = await createDriverDB (name, surname, description,image,nationality,birth);
+  res.status(201).json(newDriver);
+} catch (error) { res.status(400).json({error: error.message});
+  
+}
 };
 
 

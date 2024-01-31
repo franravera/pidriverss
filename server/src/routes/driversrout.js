@@ -10,7 +10,7 @@ driversrout.get("/drivers",getAllDrivers);
 
 // driversrout.get('/drivers/:name',getNameDrivers);
 
-driversrout.get("/:id",getIdDrivers);
+driversrout.get("/:idDriver",getIdDrivers);
 
 driversrout.post('/drivers',createDrivers); 
 

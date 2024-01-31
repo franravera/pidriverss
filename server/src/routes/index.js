@@ -9,7 +9,7 @@ const routerr = Router();
 
 routerr.use('/',driversrout)
 
-routerr.use('/:id', driversrout)
+routerr.use('/:idDriver', driversrout)
 
 // routerr.use('/drivers/:name', driversrout)
 
