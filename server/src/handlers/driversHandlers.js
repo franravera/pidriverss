@@ -6,8 +6,12 @@ const {createDriverDB, funcionId, searchAllDrivers, searchByName} = require ('..
 const getAllDrivers = async (req, res )=>{
 // Obtiene un arreglo de objetos, donde cada objeto es un driver con su información.
 const {name} = req.query
+try {
 const search = name ? await searchByName(name) : await searchAllDrivers()   
-res.status(200).json(search);
+res.status(200).json(search);} catch(error) {
+
+    res.status(400).json("NO EXISTE ")
+}
 };
 
 
@@ -22,7 +26,7 @@ const getIdDrivers =async (req, res) => {
       res.status(200).json(dridri)
     } catch (error) {
 
-      res.status(400).json("ERROR MEN ")
+      res.status(400).json("NO EXISTE ESE ID")
       console.error(error);
     };
 

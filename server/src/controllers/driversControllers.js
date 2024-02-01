@@ -1,14 +1,14 @@
-const {Driver}  = require('../db')
+const {Driver, Teams}  = require('../db')
 const axios = require('axios');
 const { Op } = require('sequelize');
 const path = require('path');
 
-
+//********************************************************************************************** */
 const createDriverDB = async (name, surname, description, image, nationality, birth) => {
     const newDriver = await Driver.create({ name, surname, description, image, nationality, birth });
     return newDriver;
   };
-  
+  //********************************************************************************************* */
   const funcionId = async (id, source) => {
     try {
       let driver;
@@ -18,8 +18,14 @@ const createDriverDB = async (name, surname, description, image, nationality, bi
         driver = (await axios.get(`http://localhost:5000/drivers/${id}`)).data;
       } else {
         // Obtener datos de la base de datos con la asociación a Team
-        driver = await Driver.findByPk(id);
+        driver = await Driver.findByPk(id, { include: Teams });
       }
+  
+      // Aplicar limpieza si el driver proviene de la API
+      if (source === 'API') {
+        driver = cleanArray([driver])[0];
+      }
+  
       console.log('Driver Information:', driver);
   
       return driver;
@@ -27,7 +33,6 @@ const createDriverDB = async (name, surname, description, image, nationality, bi
       throw error;
     }
   };
-
 
 
 const cleanArray  = (arr)=>{
@@ -40,9 +45,10 @@ const cleanArray  = (arr)=>{
         name:element.name.forename,
         surname: element.name.surname,
         description:element.description,
-        image: element.image || defaultImageURL ,
+        image: element.image.url || defaultImageURL ,
         nationality: element.nationality,
         birth: element.dob ,
+        teams:element.teams,
         created: false,
       }
       
@@ -52,7 +58,10 @@ const cleanArray  = (arr)=>{
 
    const searchAllDrivers= async ( )=>{
     //busca en BDD, buscar en API 
-    const databaseUsers = await Driver.findAll();
+    const databaseUsers = await Driver.findAll({
+      include: Teams, // Asegúrate de tener la asociación definida en tu modelo Driver
+    });
+
     const apiUsersRAw = (await axios.get ('http://localhost:5000/drivers')).data;
 const apiUsers = cleanArray(apiUsersRAw);
 //console.log(apiUsers);
@@ -64,7 +73,7 @@ const apiUsers = cleanArray(apiUsersRAw);
 // Función para buscar conductores por nombre
 const searchByName = async (name2) => {
   try {
-    const databaseUsers = await Driver.findAll({
+    const databaseUsers = await Driver.findAll({ include: Teams,
 
       where: {
         name: {
