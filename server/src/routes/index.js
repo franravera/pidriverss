@@ -1,11 +1,12 @@
 const { Router } = require("express");
-const teamrouterr = require('./teamsroute')
+const {teamrouterr} = require('../routes/teamsroute')
 const driversrout = require('./driversrout')
 
 
 const routerr = Router();
 
 
+routerr.use('/teams', teamrouterr)
 
 routerr.use('/',driversrout)
 
@@ -13,7 +14,6 @@ routerr.use('/:idDriver', driversrout)
 
 // routerr.use('/drivers/:name', driversrout)
 
-routerr.use('/teams', teamrouterr)
 
 
 // routerr.get("/drivers", (req, res) => {

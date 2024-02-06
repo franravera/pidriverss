@@ -26,7 +26,7 @@ const getIdDrivers =async (req, res) => {
       res.status(200).json(dridri)
     } catch (error) {
 
-      res.status(400).json("NO EXISTE ESE ID")
+      res.status(400).json("NO EXISTE ESE ID...")
       console.error(error);
     };
 
@@ -40,9 +40,9 @@ const createDrivers = async (req,res) => {
 //     Esta ruta recibirá todos los datos necesarios para crear un driver y relacionarlo con sus teams solicitados.
 // Toda la información debe ser recibida por body.
 // Debe crear un driver en la base de datos, y este debe estar relacionado con sus teams indicados (al menos uno).
-const {name, surname, description, image, nationality, birth } = req.body;
+const {name, surname, description, image, nationality, birth, Teams } = req.body;
 try { 
-  const newDriver = await createDriverDB (name, surname, description,image,nationality,birth);
+  const newDriver = await createDriverDB (name, surname, description,image,nationality,birth, Teams);
   res.status(201).json(newDriver);
 } catch (error) { res.status(400).json({error: error.message});
   

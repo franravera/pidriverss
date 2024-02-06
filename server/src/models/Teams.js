@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize")
 
-const {DataTypes} = require ('Sequelize')
+const {DataTypes} = require ('sequelize')
 
 module.exports =(sequelize)=> {
     sequelize.define('Teams', {

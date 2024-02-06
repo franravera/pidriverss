@@ -1,8 +1,20 @@
-const getAllTeams = (req,res) =>{
-    res.json({ message: 'TEAMS' });
-};
+const {estructuraTeams} = require('../controllers/teamsControllers')
 
 
-module.exports = {
-    getAllTeams
+
+
+
+const getTeamsH = async (req,res) =>{
+
+    try {
+        const newTeam= await estructuraTeams();
+        res.status(201).json(newTeam)
+    } catch (error) {
+        res.status(400).json({error:error.message});
+        
+    }
 };
+
+module.exports = { getTeamsH }
+
+
