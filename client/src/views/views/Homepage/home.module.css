@@ -1,0 +1,18 @@
+/* homePage.module.css */
+
+/* Estilos para la página de inicio */
+.homePage {
+    /* Establece la imagen de fondo y ajusta su tamaño y posición */
+    background-image: url('../Homepage/wp8757565.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Hace que la imagen de fondo permanezca fija mientras se hace scroll */
+    
+    /* Asegura que el componente HomePage ocupe la página completa */
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0;
+    overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal si hay contenido que excede el ancho de la pantalla */
+  }
+  
