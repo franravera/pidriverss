@@ -1,37 +1,75 @@
-import { useEffect } from "react";
-import { getAllDrivers } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import Card from "../Card/card"; // Importa el componente Card que quieres renderizar
-import styles from "../CardsContainercarp/cardscontainerr.module.css";
+  import React, { useEffect, useState } from "react";
+  import { getAllDrivers } from "../../redux/actions";
+  import { useDispatch, useSelector } from "react-redux";
+  import Card from "../Card/card";
+  import styles from "../CardsContainercarp/cardscontainerr.module.css";
 
-const CardsContainer = () => {
-  const dispatch = useDispatch();
-  const { allDrivers, nameDrivers } = useSelector((state) => state); // Obtén los arrays de conductores del estado global
+  const CardsContainer = () => {
+    const dispatch = useDispatch();
+    const { allDrivers, nameDrivers } = useSelector((state) => state);
+    const [currentPage, setCurrentPage] = useState(1);
+    const driversPerPage = 9;
+    const totalPages = Math.ceil((nameDrivers.length > 0 ? nameDrivers.length : allDrivers.length) / driversPerPage);
+    const maxDisplayedPages = 5; // Define el número máximo de páginas a mostrar
 
-  useEffect(() => {
-    dispatch(getAllDrivers());
-  }, [dispatch]); // Agrega dispatch como dependencia para evitar una advertencia de ESLint
+    useEffect(() => {
+      dispatch(getAllDrivers());
+    }, [dispatch]);
 
-  // Usa el array de conductores filtrados por nombre si está presente, de lo contrario, usa todos los conductores
-  const driversToRender = nameDrivers.length > 0 ? nameDrivers : allDrivers;
-
-  // Función de limpieza para restablecer el estado de búsqueda cuando el componente se desmonte
-  useEffect(() => {
-    return () => {
-      dispatch({ type: "GET_NAME_DRIVER", payload: [] }); // Restablece nameDrivers a un array vacío
+    const handleNextPage = () => {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
-  }, [dispatch]);
 
-  return (
-    <div className={styles.container}>
-      <p>Este componente debe tomar un array de usuarios y por cada usuario renderizar un componente card.</p>
-      {/* Utiliza map para recorrer el array de conductores y renderizar un componente Card para cada uno */}
-      {driversToRender.map((driver) => (
-        <Card key={driver.driverId} driver={driver} />
-      ))}
-    </div>
-  );
-};
+    const handlePrevPage = () => {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
 
-export default CardsContainer;
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
 
+    const calculateDisplayedPages = () => {
+      const midPoint = Math.ceil(maxDisplayedPages / 2);
+      let startPage = currentPage - midPoint + 1;
+      if (startPage < 1) {
+        startPage = 1;
+      }
+      let endPage = startPage + maxDisplayedPages - 1;
+      if (endPage > totalPages) {
+        endPage = totalPages;
+      }
+      return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
+    };
+
+    const driversToRender = nameDrivers.length > 0 ? nameDrivers : allDrivers;
+    const indexOfLastDriver = currentPage * driversPerPage;
+    const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
+    const currentDrivers = driversToRender.slice(indexOfFirstDriver, indexOfLastDriver);
+
+    return (
+    <div>
+
+      <div className={styles.container}>
+      
+        {currentDrivers.map((driver) => (
+         <Card key={driver.driverId} driver={driver} />
+        ))}
+      </div>
+        <div className={styles.paginationContainer}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            Previous Page
+          </button>
+          {calculateDisplayedPages().map((pageNumber) => (
+            <button key={pageNumber} onClick={() => handlePageChange(pageNumber)} className={currentPage === pageNumber ? styles.activePage : styles.pageNumber}>
+              {pageNumber}
+            </button>
+          ))}
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next Page
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  export default CardsContainer;

@@ -1,8 +1,36 @@
 .mainContainer {
+    background-image: url('../../views/../views/../views/views/Landingpage/F1-Bandera_a_cuadros.png'); /* Especifica la ruta de la imagen de fondo */
+    background-size: cover; /* Hace que la imagen de fondo cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo dentro del contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    position: relative; 
+    top: 130px;
+    left: 10px;
+    top: 0;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 15px;
-    border: 1px solid black;
+    justify-content: space-between;
+    padding: 10px;
+}
 
+
+.button1  {
+   
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        border-radius: 2px;
+        padding: 14px 28px;
+        cursor: pointer;
+       
+        margin-right:30px /* Esto mueve el botón 1 a la izquierda */
+}
+.button2 {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 14px 28px;
+    cursor: pointer;
+    margin-left: 40em;
 }

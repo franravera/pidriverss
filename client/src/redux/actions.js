@@ -18,8 +18,6 @@ export const getAllDrivers = () => {
 
 
 
-
-
 export const GET_NAME_DRIVER = "GET_NAME_DRIVER";
 
 export const getNameDriver = (name) => {
@@ -35,9 +33,47 @@ export const getNameDriver = (name) => {
   };
 };
 
+ export const GET_ID_DRIVERS="GET_ID_DRIVERS"
+
+ export const getIdDrivers = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/driver/${id}`);
+      const driver = response.data; // Aquí se obtiene el conductor individual
+      console.log(driver)
+      dispatch({ type: GET_ID_DRIVERS, payload: driver }); // Se envía el conductor al store
+    } catch (error) {
+      console.error("Error fetching driver by ID:", error);
+    }
+  };
+};
+
+
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+
+export const filterByOrigin= (payload)=>{
+  return ({type: FILTER_BY_ORIGIN,
+           payload})
+} 
+
+export const FILTER_BY_ORDER = "FILTER_BY_ORDER";
+
+export const filterByOrder= (payload)=>{
+  return ({type: FILTER_BY_ORDER,
+           payload})
+} 
+
+export const FILTER_BY_TEAMS = "FILTER_BY_TEAMS";
+
+export const filterByTeams= (payload)=>{
+  return ({type: FILTER_BY_TEAMS,
+           payload})
+} 
 
 export const RESET_NAME_DRIVERS = "RESET_NAME_DRIVERS";
 
 export const resetNameDrivers = () => {
   return { type: RESET_NAME_DRIVERS };
 };
+
+

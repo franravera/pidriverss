@@ -15,13 +15,16 @@ const NavBar = () => {
 
   return (
     <div className={style.mainContainer}>
-      {/* Enlace para la página de inicio con función para restablecer búsqueda */}
-      <Link to="/home" onClick={handleResetSearch}>
-        Home
+      {/* Botón para la página de inicio con función para restablecer búsqueda */}
+      <Link to="/home" onClick={handleResetSearch} >
+        <button className={style.button2}>Home</button>
       </Link>
-      <Link to="/create">Create</Link>
-      {/* Renderiza la SearchBar */}
+      {/* Botón para la página de creación */}
       <SearchBar />
+      <Link to="/create" >
+        <button className={style.button1}>Create Driver</button>
+      </Link>
+ 
     </div>
   );
 };

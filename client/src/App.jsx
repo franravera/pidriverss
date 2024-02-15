@@ -5,7 +5,7 @@ import { LandingPage, HomePage, FormPage, DetailPage  } from './views/views/inde
 
 function NavBarRoute() {
   const location = useLocation();
-  return location.pathname !== "/" ? <NavBar /> : null;
+  return location.pathname === "/home" ? <NavBar /> : null;
 }
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/home' element={<HomePage />} />
-          <Route path='/detail' element={<DetailPage />} />
+          <Route path='/detail/:id' element={<DetailPage />} />
           <Route path='/create' element={<FormPage />} />
+          
         </Routes>
       </div>
     </Router>
