@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { resetNameDrivers } from "../../redux/actions";
 import style from "./navBar.module.css";
 import SearchBar from "../searchBar/searchBar";
-import {getAllDrivers, filterByOrigin, filterByOrder} from "../../redux/actions"
+import {getAllDrivers, filterByOrigin, filterByOrder,filterByTeams} from "../../redux/actions"
 import Filtrados from "../Filtrado/Filtrado";
 
 const NavBar = () => {

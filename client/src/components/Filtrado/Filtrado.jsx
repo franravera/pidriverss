@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTeams } from "../../redux/actions";
@@ -10,7 +9,7 @@ const Filtrados = ({ handleOrder, handleOrigin, handleTeams}) => {
     const teams = useSelector(state => state.allTeams)
    
 
-    useEffect(() => { //
+    useEffect(() => { 
         dispatch(getTeams())
         
     }, [])

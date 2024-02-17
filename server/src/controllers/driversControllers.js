@@ -18,7 +18,7 @@ const cleanArray  = (arr)=>{
       nationality: element.nationality,
       birth: isNaN(element.id) ? element.birth: element.dob,
       teams: isNaN(element.id) ? element.Teams.map((team) => team.name).flat() : element.teams,
-      created: false,
+      created: isNaN(element.id)? element.created: false,
     }
     
   })

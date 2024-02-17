@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 export const GET_ALL_DRIVERS = "GET_ALL_DRIVERS";
@@ -68,15 +67,13 @@ export const GET_TEAMS= "GET_TEAMS"
 export const getTeams =  ()=>{
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3001/getTeams`);
+      const response = await axios.get(`http://localhost:3001/teams`);
       const teams = response.data; 
-      console.log(teams)
-      dispatch({ type: GET_TEAMS, payload: teams }); 
+      //console.log(teams)
+      return dispatch({ type: GET_TEAMS, payload: teams }); 
     } catch (error) {
       console.error("Error fetching teams:", error);
-    }
-    return ({type: GET_TEAMS,
-    payload})
+    }    
   };
 };
 
@@ -109,5 +106,3 @@ export const RESET_NAME_DRIVERS = "RESET_NAME_DRIVERS";
 export const resetNameDrivers = () => {
   return { type: RESET_NAME_DRIVERS };
 };
-
-

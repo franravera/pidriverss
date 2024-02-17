@@ -77,14 +77,15 @@ const Form = () => {
         }))
         console.log(form.released);
     };
-
     const handleTeams = (e) => {
-        const selectedTeam = e.target.value;
+        const selectedTeamId = e.target.value; // Aquí tomamos el ID del equipo seleccionado
+        
         setForm(prevForm => ({
             ...prevForm,
-            teams: [...prevForm.teams, selectedTeam]
+            teams: [...prevForm.teams, selectedTeamId] // Agregamos el ID del equipo al array teams
         }));
     };
+    
     
     const handleDelete = (teamToDelete) => {
         setForm(prevForm => ({
@@ -148,9 +149,9 @@ const Form = () => {
             <div className={style.cont}>
                 <select className={style.select} id='teams' defaultValue='' onChange={(e)=>handleTeams(e)}>
                     <option className={style.option} value='' disabled hidden>Choose your teams...</option>
-                    {allTeams.map((t)=>{
+                    {allTeams.map((team)=>{
                         return(
-                            <option className={style.option} key={t.id} value={t.name}>{t.name}</option>
+                            <option className={style.option} key={team.id} value={team.id}>{team.name}</option>
                         )
                     })                        
                     }
@@ -177,3 +178,10 @@ const Form = () => {
 };
 
 export default Form;
+
+
+
+
+
+
+

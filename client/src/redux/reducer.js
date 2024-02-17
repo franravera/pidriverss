@@ -38,42 +38,107 @@ const rootReducer = (state = initialState, action) => {
                     idDrivers: action.payload,
                 };
 
-            case FILTER_BY_ORIGIN: 
-                return{
-
-                }
-
-            case FILTER_BY_TEAMS:
-            let aux;
-        
-            if(action.payload){ // si la action es FILTER BY TEAMS
-                aux= state.copiaArrayDrivers.filter(driver=>{    //state.copiaArrayDrivers son todos los drivers,
-                    //  
-                    if (driver.Teams){
-                        return driver.Teams
-                    }
-                    else if(driver.Teams.some(driver=>driver.name===action.payload)){
-                        return driver.Teams.map(el=>el.name)
-                    } else {return driver.Teams.includes(action.payload)}
-                    
-                })
-
-            } else{
-                aux = state.copiaArrayDrivers
-            }
+            case FILTER_BY_ORIGIN:
+                let getDrivers = state.copiaArrayDrivers;
+                let filtrado = []
             
-            return { ...state, 
-                teams : aux,
+                switch(action.payload) {
+                case 'api': filtrado = getDrivers.filter(el => typeof (el.id) === 'number'); break;
+                case 'created': filtrado = getDrivers.filter(el => isNaN(el.id)); break;
+                default: filtrado = getDrivers; break;
+                }
+                return {
+                ...state,
+                allDrivers: filtrado
                 };
+
+                case FILTER_BY_TEAMS:
+                    let aux = [];
+                    if (action.payload) {
+                        aux = state.copiaArrayDrivers.filter(e => {
+                            if (typeof e.teams === 'string') { // Verificar si e.teams es una cadena
+                                const arr = e.teams.split(',').map(team => team.trim());
+                                if (arr.some(e => e === action.payload)) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        });
+                    } else {
+                        aux = state.copiaArrayDrivers;
+                    }
+                    return {
+                        ...state,
+                        allDrivers: aux
+                    };
+                
+         
+                
+            // let aux;
+        
+            // if(action.payload){ // si la action es FILTER BY TEAMS
+            //     aux= state.copiaArrayDrivers.filter(driver=>{    //state.copiaArrayDrivers son todos los drivers,
+            //         //  
+            //         if (driver.Teams){
+            //             return driver.Teams
+            //         }
+            //         else if(driver.Teams.some(driver=>driver.name===action.payload)){
+            //             return driver.Teams.map(el=>el.name)
+            //         } else {return driver.Teams.includes(action.payload)}
+                    
+            //     })
+
+            // } else{
+            //     aux = state.copiaArrayDrivers
+            // }
+            
+            // return { ...state, 
+            //     teams : aux,
+            //     };
 
              
 
 
                 
             case FILTER_BY_ORDER:
-                return {
+            let vgCopy = [...state.allDrivers]; //hago una copia de mi estado importante
+            let ordenamiento
 
-                }    
+            switch (action.payload) {
+                case 'All':
+                    ordenamiento = [...state.allDrivers];
+                    break;
+                case 'A-Z':
+                    ordenamiento = vgCopy.sort(function(a, b) {
+                        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                            return 1
+                        }
+                        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                            return -1
+                        }
+                        return 0;
+                    });
+                    break;
+                case 'Z-A':
+                    ordenamiento = vgCopy.sort(function(a, b) {
+                        if(a.name.toLowerCase() < b.name.toLowerCase()) {
+                            return 1;
+                          }
+                          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                            return -1;
+                          }
+                          return 0;
+                    })
+                    break;                
+                default:
+                    ordenamiento = vgCopy
+                    break;
+            }
+            return {
+                ...state,
+                allDrivers: ordenamiento,
+                copia : ordenamiento
+            };
 
                 case CREATE_DRIVER:
                     return{
