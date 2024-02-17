@@ -1,6 +1,11 @@
 const axios = require("axios");
 const { Teams } = require('../db');
 
+const getTeamsFrontC=async ()=>{
+  const db=  await Teams.findAll()
+  return db
+}
+
 const estructuraTeams = async () => {
   try {
     const url = 'http://localhost:5000/drivers';
@@ -15,19 +20,18 @@ const estructuraTeams = async () => {
       }
     });
 
+    
     // Eliminar duplicados
-    const uniqueTeams = [...new Set(teams)];
+    const uniqueTeams = teams.filter((value, index, array)=> array.indexOf(value)===index);
+  const teamsOrdenados = uniqueTeams.sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()))
 
-    // Consultamos solo los equipos que ya existen en la base de datos
-    const existingTeams = await Teams.findAll({
-      where: { name: uniqueTeams },
-    });
 
-    // Filtramos los equipos que no existen en la base de datos
-    const newTeams = uniqueTeams.filter(team => !existingTeams.some(existingTeam => existingTeam.name === team));
 
     // Utilizamos ignoreDuplicates: true para evitar la inserción de registros duplicados
-    await Teams.bulkCreate(newTeams.map(name => ({ name })), { ignoreDuplicates: true });
+    await Promise.all(teamsOrdenados.map(async(team)=>{
+      const createTeam= await  Teams.create({name: team})
+    // console.log(`teamCreado : ${createTeam.name}`);
+    }))
 
     const todosLosTeams = await Teams.findAll();
     return todosLosTeams;
@@ -39,4 +43,5 @@ const estructuraTeams = async () => {
 
 module.exports = {
   estructuraTeams,
+  getTeamsFrontC
 };

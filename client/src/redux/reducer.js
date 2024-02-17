@@ -1,10 +1,12 @@
-import { GET_ALL_DRIVERS, GET_NAME_DRIVER,GET_ID_DRIVERS, RESET_NAME_DRIVERS, FILTER_BY_ORDER,FILTER_BY_ORIGIN,FILTER_BY_TEAMS } from "./actions";
+import { GET_TEAMS, GET_ALL_DRIVERS, GET_NAME_DRIVER,GET_ID_DRIVERS, RESET_NAME_DRIVERS,CREATE_DRIVER, FILTER_BY_ORDER,FILTER_BY_ORIGIN,FILTER_BY_TEAMS } from "./actions";
 
 const initialState = {
     allDrivers: [], 
     nameDrivers: [], 
     idDrivers: [],
-    copia: [],
+    copiaArrayDrivers: [],
+    allTeams:[],
+
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,8 +16,14 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allDrivers:action.payload,
-                copia:action.payload
+                copiaArrayDrivers:action.payload,
             };
+
+            case GET_TEAMS:
+                return{
+                    ...state,
+                    allTeams:action.payload
+                }
 
         case GET_NAME_DRIVER:
             // Actualiza la lista de conductores filtrados por nombre
@@ -36,30 +44,42 @@ const rootReducer = (state = initialState, action) => {
                 }
 
             case FILTER_BY_TEAMS:
-            let aux = [];
-            
-            if(action.payload){
-                aux= state.copia.filter(elemto=>{
-                    if (!elemto.teams){
-                        return elemto.teams.some(elemto.)
+            let aux;
+        
+            if(action.payload){ // si la action es FILTER BY TEAMS
+                aux= state.copiaArrayDrivers.filter(driver=>{    //state.copiaArrayDrivers son todos los drivers,
+                    //  
+                    if (driver.Teams){
+                        return driver.Teams
                     }
-                    else if(elemto.teams)
+                    else if(driver.Teams.some(driver=>driver.name===action.payload)){
+                        return driver.Teams.map(el=>el.name)
+                    } else {return driver.Teams.includes(action.payload)}
                     
                 })
+
+            } else{
+                aux = state.copiaArrayDrivers
             }
             
-            
-            
-            return { 
+            return { ...state, 
+                teams : aux,
+                };
+
+             
 
 
-                }
-
+                
             case FILTER_BY_ORDER:
                 return {
 
                 }    
 
+                case CREATE_DRIVER:
+                    return{
+                        ...state,
+                        allDrivers: action.payload,
+                    };
 
 
                 

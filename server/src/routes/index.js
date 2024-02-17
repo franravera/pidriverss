@@ -8,6 +8,8 @@ const routerr = Router();
 
 routerr.use('/teams', teamrouterr)
 
+routerr.use('/getTeams',teamrouterr )
+
 routerr.use('/',driversrout)
 
 routerr.use('/:idDriver', driversrout)

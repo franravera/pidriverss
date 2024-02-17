@@ -63,6 +63,40 @@ export const filterByOrder= (payload)=>{
            payload})
 } 
 
+export const GET_TEAMS= "GET_TEAMS"
+
+export const getTeams =  ()=>{
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/getTeams`);
+      const teams = response.data; 
+      console.log(teams)
+      dispatch({ type: GET_TEAMS, payload: teams }); 
+    } catch (error) {
+      console.error("Error fetching teams:", error);
+    }
+    return ({type: GET_TEAMS,
+    payload})
+  };
+};
+
+export const CREATE_DRIVER = "CREATE_DRIVER";
+export const createDriver = (driver) => {
+  return async (dispatch) => {
+      try {
+          const { data } = await axios.post('http://localhost:3001/drivers', driver);
+          return dispatch({
+              type: CREATE_DRIVER,
+              payload: data
+          });            
+      } catch (error) {
+          console.log(error);            
+      }
+  }
+};
+
+
+
 export const FILTER_BY_TEAMS = "FILTER_BY_TEAMS";
 
 export const filterByTeams= (payload)=>{

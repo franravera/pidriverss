@@ -1,14 +1,16 @@
 const {Router} = require ('express')
 
-const {getTeamsH} = require ('../handlers/teamshandlers')
+const {getTeamsH, getTeamsFrontH} = require ('../handlers/teamshandlers')
 
 const teamrouterr = Router()
 
  teamrouterr.get('/', getTeamsH)
 
+ teamrouterr.get('/', getTeamsFrontH )
 
 module.exports= { 
     teamrouterr,
+    
 }
 
 

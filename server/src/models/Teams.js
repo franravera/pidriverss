@@ -16,11 +16,7 @@ module.exports =(sequelize)=> {
             allowNull: false,
 
         },
-        created: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true, // Valor por defecto es true
-          },
+       
 
     },
     {

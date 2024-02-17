@@ -5,20 +5,19 @@ const path = require('path');
 //******************************************************************************************************* */
 //funcion que mapea la info traida de la api para que solo queden los atributos que necesito
 const cleanArray  = (arr)=>{
-  //ruta de la imagen por defecto
   const imagePath = path.join(__dirname, 'server', 'src', 'imagen', 'LOGOF1');
   const defaultImageURL = `file://${imagePath}`;
   
   const clean = arr.map(element=>{
     return {
       id:element.id,
-      name:element.name.forename,
-      surname: element.name.surname,
+      name:isNaN(element.id) ? element.name:element.name.forename,
+      surname: isNaN(element.id) ? '': element.name.surname,
       description:element.description,
-      image: element.image.url || defaultImageURL ,
+      image:isNaN(element.id) ? element.image: element.image.url || defaultImageURL ,
       nationality: element.nationality,
-      birth: element.dob ,
-      teams:element.teams,
+      birth: isNaN(element.id) ? element.birth: element.dob,
+      teams: isNaN(element.id) ? element.Teams.map((team) => team.name).flat() : element.teams,
       created: false,
     }
     
@@ -31,15 +30,18 @@ const cleanArray  = (arr)=>{
  // Realizar una consulta a la BDD para obtener información sobre los conductores y sus equipos
 const dbDrivers = async ()=>{
   try{       
-    return  await  Driver.findAll({
+    const arrDb = await  Driver.findAll({
       include: { model: Teams,
         attributes: ['name'],
         through:{
           attributes:[]
         }
-         }
-  })
-  // Manejar cualquier error que ocurra durante la ejecución de la consulta
+      }
+      // Manejar cualquier error que ocurra durante la ejecución de la consulta
+    })
+    console.log(arrDb);
+    const cleanDriversDb = cleanArray(arrDb)
+    return cleanDriversDb
 }catch (error){
   console.log(error);
 }
@@ -56,6 +58,7 @@ const apiDriver = async()=>{
     
     const response = await axios.get(url);
     const apiDriverssinmap = response.data;
+    // console.log(apiDriverssinmap);
     const apiDriversmapeado = Array.isArray(apiDriverssinmap) ? cleanArray(apiDriverssinmap) : [];
 
     return apiDriversmapeado;
@@ -76,8 +79,9 @@ const searchAllDrivers= async ( )=>{
   //busca en BDD
   const databaseUsers = await dbDrivers();
   //buscar en la API
-  const  apiUsers = await  apiDriver();
   
+  const  apiUsers = await  apiDriver();
+  console.log(databaseUsers, "databaseUsers",apiUsers, 'apiUsers');
   //Unificar 
   return [... databaseUsers, ...apiUsers]; 
   
