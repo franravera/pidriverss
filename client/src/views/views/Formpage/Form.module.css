@@ -1,34 +1,90 @@
-.background{
-    background-color: black;
-    /* background-color: rgb(9, 9, 58); */
-    background-size: cover;
-    background-position: center;
-    height: 100vh;  
-    position: relative;
-    z-index: 1;    
+.background {
+    background-color: rgb(255, 0, 0); /* Fallback color en caso de que la imagen no se cargue */
+    background-image: url('../Formpage/foto-2-todo-lo-que-debes-saber-sobre-el-gran-premio-de-monaco-de-f1.jpeg'); /* Ruta de la imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+    background-position: center; /* Centra la imagen de fondo */
+    height: 100vh; /* Altura del 100% de la ventana visible */
+    position: fixed; /* Fija la posición del elemento */
+    top: 0; /* Coloca el elemento en la parte superior de la ventana */
+    left: 0; /* Coloca el elemento en la parte izquierda de la ventana */
+    right: 0; /* Coloca el elemento en la parte derecha de la ventana */
+    bottom: 0; /* Coloca el elemento en la parte inferior de la ventana */
+    z-index: -1; /* Asegura que el fondo esté detrás de otros elementos */
+    overflow-y: auto;
 }
 
-.form{
+.bottonHome {
+   
+    color: white; /* Color de texto blanco */
+    font-family: Arial, Helvetica, sans-serif; /* Fuente */
+    font-size: 2em; /* Tamaño de fuente grande */
+    padding: 10px 20px; /* Padding para espacio alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Hace que el botón sea un bloque para centrar horizontalmente */
+    margin-left: 9%; /* Empuja el botón hacia la derecha */
+    /* Ajusta el margen derecho para controlar la posición */
+}
+.select22 {
+    font-family: Arial, sans-serif; /* Cambia la fuente */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 8px 32px 8px 12px; /* Ajusta el relleno */
+    border: 1px solid; /* Añade un borde */
+    border-radius: 4px; /* Añade bordes redondeados */
+    appearance: none; /* Oculta el estilo predeterminado del sistema */
+    background-color: rgb(0, 0, 0); /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23ffffff"><path d="M10.293 14.293a1 1 0 0 1-.32.22 1 1 0 0 1-1.02-.12l-4-3.5a1 1 0 1 1 1.32-1.5L10 11.69l3.707-3.637a1 1 0 1 1 1.32 1.497l-4 3.5a1 1 0 0 1-.714.12z"/></svg>'); /* Agrega una flecha hacia abajo como fondo */
+    background-position: right 12px center; /* Ajusta la posición de la flecha */
+    background-repeat: no-repeat; /* Evita la repetición del fondo */
+    background-size: 20px; /* Tamaño de la flecha */
+   
+    margin-top: 5px; /* Ajusta el margen superior para moverlo hacia abajo */
+    margin-bottom: 5px; /* Ajusta el margen inferior para moverlo hacia arriba */
+}
+
+.cont22 {
+    font-family: Arial, sans-serif; /* Cambia la fuente */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 4px; /* Ajusta el relleno */
+    border: 1px solid; /* Añade un borde */
+    border-radius: 4px; /* Añade bordes redondeados */
+    width: 150px; /* Ancho del elemento */
+    height: 100px; /* Altura del elemento */
+    background-color: rgb(0, 0, 0); /* Cambia el color de fondo */
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    margin-top: 5px; /* Ajusta el margen superior para moverlo hacia abajo */
+    margin-bottom: 5px; /* Ajusta el margen inferior para moverlo hacia arriba */
+    display: inline-block; /* Coloca los elementos en línea */
+}
+
+.form {
     display: flex;
     justify-content: center;
-    background-color: black;
-    width: 90%;
-    height: 80%;
-    margin-left: 5%;
+
+    width: 80%;
+   
+    
+    height: 80%; /* Por ejemplo, aquí se reduce la altura al 70% */
+    margin-left: 10%;
     margin-top: 5%;
     position: absolute;
     z-index: 2;
 }
 
-.form:hover{
-    box-shadow: 2px 2px 5px 0px #f00303;
-}
 
-.title{
-    color: white;
+.title {
+    color: white; /* Cambia el color del texto a blanco para que sea visible sobre el fondo negro */
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 75%;
-    margin-bottom: 1%;
+    font-size: 1em; /* Tamaño de fuente inicial */
+    margin-bottom: 0%;
+    margin-left: 20%;
+    background-color: black;
+    padding: 0px 12px 0px 12px; /* Tamaño del padding: arriba, derecha, abajo, izquierda */
+    display: inline-block;
 }
 
 .cont{
@@ -37,7 +93,10 @@
     line-height: 20px;
     margin-top: 5px;
     margin-left: 5px;
-    color:  white;
+    padding: 0px 5px 0px 12px; /* Tamaño del padding: arriba, derecha, abajo, izquierda */
+    color:  rgb(255, 255, 255);
+    background-color: black;
+    
 }
 
 
@@ -61,24 +120,12 @@
     margin-bottom: 1%;
 }
 
-.opciontitle{
-    display: flex;
-    margin-left: 40%;
-    margin-right: 40%;
-    
-}
 
-.option{
-    color: black;
-    
-
-    
-}
 
 .errors{    
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 70%;
-    color: rgb(243, 16, 16);
+    color: rgb(206, 24, 24);
     margin: auto;
 }
 
@@ -130,4 +177,19 @@
 .input{
     width: 50%;
     
+}
+
+
+.buttonNew {
+    color: rgb(255, 0, 0); /* Color de texto blanco */
+    font-family: Arial, Helvetica, sans-serif; /* Fuente */
+    font-size: 1em; /* Tamaño de fuente grande */
+    padding: 10px 20px; /* Padding para espacio alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Hace que el botón sea un bloque para centrar horizontalmente */
+    margin-left: 20%; /* Empuja el botón hacia la derecha */
+    /* Ajusta el margen derecho para controlar la posición */
 }

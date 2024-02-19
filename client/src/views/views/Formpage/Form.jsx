@@ -90,11 +90,16 @@ const Form = () => {
 
     return (
         <div className={style.background}>
+                    <div className={style.bottonHome}>
+                        <button onClick={() => navigate('/home')} className={style.button}>Home</button>
+                    </div>
+
             <form onSubmit={(e) => handleSubmit(e)} className={style.form}>
                 <div className={style.fullcont}>
                     <div className={style.title}>
                         <h2>CREATE YOUR DRIVER</h2>
                     </div>
+                    {/* Otros campos del formulario */}
                     <div className={style.cont}>
                         <label className={style.label}>Name:</label>
                         <input placeholder="write driver's name..." type="text" value={form.name} onChange={(e) => handleChange(e)} name='name' className={style.input}/>
@@ -124,31 +129,35 @@ const Form = () => {
                         <textarea placeholder="write driver's description..." type="text" value={form.description} onChange={handleChange} name='description' className={style.input}/>
                         {errors.description && <p className={style.errors}>{errors.description}</p>}
                     </div>
-                    {/* Selección de equipos */}
-                    <div className={style.cont}>
-                        <select className={style.select} id='Teams' defaultValue='' onChange={(e) => handleTeams(e.target.value)}>
+                    <div className={style.select}>
+                        <select className={style.select22} id='Teams' defaultValue='' onChange={(e) => handleTeams(e.target.value)}>
                             <option className={style.option} value='' disabled hidden>Choose your teams...</option>
                             {allTeams.map((team) => {
                                 return (
-                                    <option className={style.option} key={team.id} value={team.id}>{team.name}</option>
+                                    <option className={style.optionTeams} key={team.id} value={team.id}>{team.name}</option>
                                 )
                             })}
                         </select>
                     </div>
+
+                 
+
                     {/* Equipos seleccionados */}
-                    <div className={style.cont}>
+                    <div >
                         {/* Iterar sobre el array 'Teams' en el estado 'form' */}
                         {form.Teams.map((teamId, index) => {
                             const team = allTeams.find(t => t.id.toString() === teamId);
                             return (
-                                <div className={style.boxopcion} key={index}>
+                                <div className={style.cont22} key={index}>
                                     <p>{team ? team.name : 'Team not found'}</p>
-                                    <button className={style.buttondelete} onClick={() => handleDelete(teamId)}>X</button>
+                                    <button className={style.buttondelete} onClick={() => handleDelete(teamId)}>Delete  </button>
                                 </div>
                             );
                         })}
+                    </div >
+                    <div className={style.buttonNew}>
+                    {emptyErrors && <button type="submit" className={style.buttonNew}>New Driver</button>}
                     </div>
-                    {emptyErrors && <button type="submit" className={style.button}>New Driver</button>}
                 </div>
             </form>
         </div>

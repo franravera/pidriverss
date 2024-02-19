@@ -52,9 +52,9 @@ const NavBar = () => {
   return (
     <div className={style.mainContainer}>
       {/* Botón para la página de inicio con función para restablecer búsqueda */}
-      <Link to="/home" onClick={handleResetSearch} >
-        <button className={style.button2}>Home</button>
-      </Link>
+      <Link to="/home" onClick={() => { handleResetSearch(); resetPagination(); }}>
+  <button className={style.button2}>Home</button>
+</Link>
       <Filtrados handleOrigin={handleOrigin} handleTeams={handleTeams} handleOrder={handleOrder}/>
       
       <SearchBar />
