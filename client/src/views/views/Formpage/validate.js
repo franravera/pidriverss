@@ -32,12 +32,7 @@ const validate = (form) => {
     if(!form.birth){
         errors.birth = 'Complete birth'
     }    
-    // if(form.teams.length===0){
-    //     errors.teams = 'Choose almost one team'
-    // }
-    if(!form.description){
-        errors.description = 'Complete description'
-    }
+    
        
     return errors;
 };

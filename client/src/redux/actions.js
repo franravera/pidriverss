@@ -80,9 +80,12 @@ export const getTeams =  ()=>{
 export const CREATE_DRIVER = "CREATE_DRIVER";
 export const createDriver = (driver) => {
   return async (dispatch) => {
-      try {
-          const { data } = await axios.post('http://localhost:3001/drivers', driver);
+    try {
+      const { data } = await axios.post('http://localhost:3001/drivers', driver);
+      console.log(driver, "HOLA SOY DRIVER");
+         console.log(data, "HOLA SOY DATITA");
           return dispatch({
+
               type: CREATE_DRIVER,
               payload: data
           });            

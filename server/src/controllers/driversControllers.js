@@ -39,7 +39,7 @@ const dbDrivers = async ()=>{
       }
       // Manejar cualquier error que ocurra durante la ejecución de la consulta
     })
-    console.log(arrDb);
+    
     const cleanDriversDb = cleanArray(arrDb)
     return cleanDriversDb
 }catch (error){
@@ -81,7 +81,7 @@ const searchAllDrivers= async ( )=>{
   //buscar en la API
   
   const  apiUsers = await  apiDriver();
-  console.log(databaseUsers, "databaseUsers",apiUsers, 'apiUsers');
+ 
   //Unificar 
   return [... databaseUsers, ...apiUsers]; 
   
@@ -110,7 +110,6 @@ const funcionId = async (id, source) => {
       driver = cleanArray([driver])[0];
     }
     
-    console.log('Driver Information:', driver);
     
     return driver;
   } catch (error) {
@@ -156,7 +155,7 @@ const searchByName = async (startingLetter) => {
       throw new Error(`No se encontraron conductores cuyos nombres comiencen con la letra ${startingLetter}.`);
     }
 
-    console.log(mergedUsers);
+   
 
     // Limitar a 15 resultados y devolver el array resultante
     return mergedUsers.slice(0, 15);
@@ -165,8 +164,9 @@ const searchByName = async (startingLetter) => {
   }
 };
   
-const createDriverDB = async (name, surname, description, image, nationality, birth, Teams) => {
+const createDriverDB = async ({name, surname, description, image, nationality, birth, Teams}) => {
   // Crear el conductor en la base de datos
+  console.log(Teams, "TEAMS BACK");
   const newDriver = await Driver.create({
     name,
     surname,

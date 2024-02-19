@@ -45,7 +45,7 @@
     const indexOfLastDriver = currentPage * driversPerPage;
     const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
     const currentDrivers = driversToRender.slice(indexOfFirstDriver, indexOfLastDriver);
-
+    console.log("Current Drivers:", currentDrivers);
     return (
     <div>
 
@@ -54,6 +54,7 @@
         {currentDrivers.map((driver) => (
          <Card key={driver.driverId} driver={driver} />
         ))}
+        
       </div>
         <div className={styles.paginationContainer}>
           <button onClick={handlePrevPage} disabled={currentPage === 1}>

@@ -39,8 +39,9 @@ const getIdDrivers =async (req, res) => {
 const createDrivers = async (req,res) => { 
 
 const {name, surname, description, image, nationality, birth, Teams } = req.body;
+console.log(Teams, "LOG TEAM");
 try { 
-  const newDriver = await createDriverDB (name, surname, description,image,nationality,birth, Teams);
+  const newDriver = await createDriverDB ({name, surname, description,image,nationality,birth, Teams});
   res.status(201).json(newDriver);
 } catch (error) { res.status(400).json({error: error.message});
   

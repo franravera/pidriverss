@@ -15,6 +15,33 @@ function DetailPage() {
   const driverId = useSelector((state) => state.idDrivers);
 
 
+  
+
+  
+  const renderTeams = () => {
+    if (Array.isArray(driverId.Teams) && driverId.Teams.length > 0) {
+      // Si `teams` es un array con elementos, renderizamos todos los nombres de los equipos
+      return (
+        <div>
+          {driverId.Teams.map((team, index) => (
+            <p key={index}>{team.name}</p>
+          ))}
+        </div>
+      );
+    } else if (typeof driverId.teams === 'string') {
+      // Si `teams` es una cadena de texto, la dividimos por comas y renderizamos cada equipo
+      const teams = driverId.teams.split(',').map(team => team.trim());
+      return (
+        <div>
+          {teams.map((team, index) => (
+            <p key={index}>{team}</p>
+          ))}
+        </div>
+      );
+    } 
+  };
+  
+  
   return (
     <div>
       <h1>Welcome to the detail Page</h1>
@@ -27,7 +54,8 @@ function DetailPage() {
         <p>Nationality: {driverId.nationality}</p>
         <p>Description: {driverId.description}</p>
         <p>Birth: {driverId.birth}</p>
-        <p>Teams: {driverId.teams}</p>
+        <p>Teams: {renderTeams()}</p>
+    
 
         {/* Agrega más detalles según sea necesario */}
       </div>
