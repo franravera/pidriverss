@@ -13,12 +13,12 @@ const Filtrados = ({ handleOrder, handleOrigin, handleTeams }) => {
   return (
     <div>
       <select onChange={(e) => handleOrder(e)}>
-        <option value="">Order by...</option>
+        <option value="">Alphabetically</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>
       </select>
       <select id="teams" onChange={(e) => handleTeams(e)}>
-        <option value="">Teams</option>
+        <option value="">All scuderias</option>
         {teams &&
           teams
             .sort((a, b) => a.name.localeCompare(b.name))
@@ -32,7 +32,7 @@ const Filtrados = ({ handleOrder, handleOrigin, handleTeams }) => {
       </select>
 
       <select onChange={(e) => handleOrigin(e)}>
-        <option value="">Filter by origin</option>
+        <option value="">All drivers</option>
         <option value="api">Api</option>
         <option value="created">My creations</option>
       </select>

@@ -11,6 +11,8 @@
 
 
   .contenedorDeTodo {
+    position: relative;
+    min-height: 100vh; /* Establece la altura mínima al 100% de la altura de la ventana */
     max-width: 400px; /* Define el ancho máximo del contenedor */
     margin: 0 auto; /* Centra el contenedor horizontalmente */
     padding: 20px; /* Añade un espacio interior al contenedor */
@@ -18,6 +20,10 @@
     border-radius: 8px; /* Redondea las esquinas del contenedor */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
     background-color: rgb(71, 69, 69); /* Agrega un color de fondo */
+   
+      /* Resto de estilos aquí */
+  
+  
   }
   
 
@@ -38,12 +44,19 @@
   }
 
 
-  .fondo{
+  .fondo {
+    position: fixed; /* Fija la posición del contenedor */
+    top: 0; /* Establece la distancia desde arriba */
+    left: 0; /* Establece la distancia desde la izquierda */
+    width: 100%; /* Establece el ancho al 100% del viewport */
+    height: 100%; /* Establece la altura al 100% del viewport */
+    z-index: -1; /* Coloca el contenedor detrás de otros elementos */
     background-image: url('./gomas-pirelli-2016.jpg');
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-attachment: fixed; /* Fija la posición de la imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-attachment: fixed; /* Fija la posición de la imagen de fondo */
+    overflow-y: auto; /* Agrega un scrollbar vertical cuando el contenido excede la altura del viewport */
+}
 
-  }
 
   .p {
     font-family: "Helvetica Neue", Arial, sans-serif; /* Fuente elegante */

@@ -57,7 +57,7 @@ function DetailPage() {
           <p className={style.p}>Nationality: {driverId.nationality}</p>
           <p className={style.p}>Description: {driverId.description}</p>
           <p className={style.p}>Birth: {driverId.birth}</p>
-          <p className={style.p}>Teams: {renderTeams()}</p>
+          <p className={style.p}>Scuderias: {renderTeams()}</p>
 
           {/* Agrega más detalles según sea necesario */}
         </div>
