@@ -72,33 +72,7 @@ const rootReducer = (state = initialState, action) => {
                         allDrivers: aux
                     };
                 
-         
-                
-            // let aux;
-        
-            // if(action.payload){ // si la action es FILTER BY TEAMS
-            //     aux= state.copiaArrayDrivers.filter(driver=>{    //state.copiaArrayDrivers son todos los drivers,
-            //         //  
-            //         if (driver.Teams){
-            //             return driver.Teams
-            //         }
-            //         else if(driver.Teams.some(driver=>driver.name===action.payload)){
-            //             return driver.Teams.map(el=>el.name)
-            //         } else {return driver.Teams.includes(action.payload)}
-                    
-            //     })
-
-            // } else{
-            //     aux = state.copiaArrayDrivers
-            // }
-            
-            // return { ...state, 
-            //     teams : aux,
-            //     };
-
-             
-
-
+  
                 
             case FILTER_BY_ORDER:
             let vgCopy = [...state.allDrivers]; //hago una copia de mi estado importante
