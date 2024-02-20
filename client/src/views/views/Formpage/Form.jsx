@@ -57,7 +57,6 @@ const Form = () => {
       navigate("/home");
     }
   };
-  
 
   const handleChange = (event) => {
     const property = event.target.name;
@@ -187,8 +186,14 @@ const Form = () => {
               <option className={style.option} value="" disabled hidden>
                 Choose your teams...
               </option>
-              {allTeams.map((team) => {
-                return (
+              {/* Ordenar alfabéticamente y eliminar duplicados */}
+              {allTeams
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .filter(
+                  (team, index, self) =>
+                    index === self.findIndex((t) => t.id === team.id)
+                )
+                .map((team) => (
                   <option
                     className={style.optionTeams}
                     key={team.id}
@@ -196,8 +201,7 @@ const Form = () => {
                   >
                     {team.name}
                   </option>
-                );
-              })}
+                ))}
             </select>
           </div>
 
