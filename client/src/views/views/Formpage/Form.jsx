@@ -103,7 +103,7 @@ const Form = () => {
           <div className={style.title}>
             <h2>CREATE YOUR DRIVER</h2>
           </div>
-          {/* Otros campos del formulario */}
+          
           <div className={style.cont}>
             <label className={style.label}>Name:</label>
             <input
@@ -205,7 +205,7 @@ const Form = () => {
             </select>
           </div>
 
-          {/* Equipos seleccionados */}
+          
           <div>
             {/* Mapear y ordenar alfabéticamente los nombres de los equipos */}
             {form.Teams.map((teamId) => {
