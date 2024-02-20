@@ -28,9 +28,10 @@
 .button2 {
     background-color: #ff0000;
     color: #fff;
+    right: 200%;
     border: none;
     border-radius: 2px;
     padding: 14px 28px;
     cursor: pointer;
-    margin-left: 40em;
+  
 }

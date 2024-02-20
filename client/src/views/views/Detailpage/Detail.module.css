@@ -1,0 +1,63 @@
+.divImage {
+    text-align: center; /* Centra la imagen horizontalmente */
+    margin-bottom: 20px; /* Agrega un espacio en la parte inferior */
+  }
+  
+  .divImage img {
+    max-width: 100%; /* Ajusta el ancho máximo de la imagen al contenedor */
+    height: auto; /* Ajusta automáticamente la altura para mantener la proporción */
+  }
+
+
+
+  .contenedorDeTodo {
+    max-width: 400px; /* Define el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px; /* Añade un espacio interior al contenedor */
+    border: 1px solid #ccc; /* Agrega un borde sólido */
+    border-radius: 8px; /* Redondea las esquinas del contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
+    background-color: rgb(71, 69, 69); /* Agrega un color de fondo */
+  }
+  
+
+  .bottonHome{
+
+
+    color: rgb(0, 0, 0); /* Color de texto blanco */
+    font-family: Arial, Helvetica, sans-serif; /* Fuente */
+    font-size: 1em; /* Tamaño de fuente grande */
+    padding: 10px 20px; /* Padding para espacio alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Hace que el botón sea un bloque para centrar horizontalmente */
+    margin-left: 46%; /* Empuja el botón hacia la derecha */
+    /* Ajusta el margen derecho para controlar la posición */
+  }
+
+
+  .fondo{
+    background-image: url('./gomas-pirelli-2016.jpg');
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  background-attachment: fixed; /* Fija la posición de la imagen de fondo */
+
+  }
+
+  .p {
+    font-family: "Helvetica Neue", Arial, sans-serif; /* Fuente elegante */
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 18px; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea para un espaciado adecuado */
+    margin: 10px 0; /* Añade espacio arriba y abajo */
+  }
+  
+
+  .titulo{
+    font-family: "Helvetica Neue", Arial, sans-serif; /* Fuente elegante */
+  text-align: center; /* Centra el texto horizontalmente */
+  font-size: 25px; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea para un espaciado adecuado */
+  margin: 10px 0; /* Añade espacio arriba y abajo */
+  }
