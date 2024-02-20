@@ -27,7 +27,7 @@ const Filtrados = ({ handleOrder, handleOrigin, handleTeams }) => {
                 <option key={t.id} value={t.name}>
                   {t.name}
                 </option>
-              );            
+              );
             })}
       </select>
 

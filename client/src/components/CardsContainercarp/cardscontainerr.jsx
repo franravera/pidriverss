@@ -1,4 +1,3 @@
-// CardsContainer.js
 import React, { useEffect, useState } from "react";
 import { getAllDrivers } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,16 +52,18 @@ const CardsContainer = () => {
   };
 
   const driversToRender = nameDrivers.length > 0 ? nameDrivers : allDrivers;
-let currentDrivers = [];
+  let currentDrivers = [];
 
-if (Array.isArray(driversToRender)) {
-  const indexOfLastDriver = currentPage * driversPerPage;
-  const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
-  currentDrivers = driversToRender.slice(indexOfFirstDriver, indexOfLastDriver);
-} else {
-  
-  console.error('Error: driversToRender is not an array');
-}
+  if (Array.isArray(driversToRender)) {
+    const indexOfLastDriver = currentPage * driversPerPage;
+    const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
+    currentDrivers = driversToRender.slice(
+      indexOfFirstDriver,
+      indexOfLastDriver
+    );
+  } else {
+    console.error("Error: driversToRender is not an array");
+  }
 
   return (
     <div>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getNameDriver } from '../../redux/actions';
-import style from "../searchBar/searchBar.module.css"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getNameDriver } from "../../redux/actions";
+import style from "../searchBar/searchBar.module.css";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   const handleKeyPress = (event) => {
     // Verifica si se presionó la tecla "Enter"
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSearch();
     }
   };
